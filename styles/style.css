@@ -1,16 +1,468 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
+/* тело */
 .page {
+  font-family: var(--font-family-main, sans-serif);
+  font-variation-settings: var(--font-weight-text, 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  padding-block: 100px;
+  background-image: var(--gradient-left), var(--gradient-top), var(--gradient-main);
+  background-size: cover;
+}
+
+/* общий класс для кнопок */
+.button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: 2px solid var(--accent-color, #000);
+  background: none;
+  background-color: var(--main-color, #fff);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* спан внутри кнопки */
+.button__text {
+  font-family: var(--font-family-accent, sans-serif);
+  color: var(--main-color, #fff);
+  font-size: 14px;
+  line-height: 90%;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+/* ширина блоков */
+.block-size {
+  inline-size: clamp(375px, 100vw, 700px);
+}
+
+/* шапка */
+.header {
+  font-family: var(--font-family-accent, sans-serif);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-block-size: 327px;
+  margin-block-end: 100px;
+  border: 2px solid var(--accent-color, #000);
+  background-color: var(--main-color, #fff);
+}
+
+/* резиновый размер шрифта в заголовке шапки */
+.header__title {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+}
+
+/* резиновый размер шрифта в подзаголовке шапки */
+.header__subtitle {
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+}
+
+/* основная часть */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* секции */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--accent-color, #000);
+  background-color: var(--main-color, #fff);
+}
+
+/* заголовок секции */
+.card__title {
+  font-size: 18px;
+  font-variation-settings: var(--font-weight-title, 800);
+  line-height: 123%;
+  padding: 4px 10px;
+}
+
+/* вотерка */
+.card__label {
+  font-family: var(--font-family-accent, sans-serif);
+  font-size: 14px;
+  color: var(--font-color, #000);
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  right: 25px;
+  opacity: 50%;
+  mix-blend-mode: hard-light;
+  text-shadow:
+    -1px 0 var(--text-stroke-color, #fff), 
+    0 1px var(--text-stroke-color, #fff), 
+    1px 0 var(--text-stroke-color, #fff), 
+    0 -1px var(--text-stroke-color, #fff);
+}
+
+/* фолбэк теней вотерки */
+@supports((text-stroke: 1px var(--text-stroke-color)) or (-webkit-text-stroke: 1px var(--text-stroke-color))) {
+  .card__label {
+    -webkit-text-stroke: 1px var(--text-stroke-color, #fff);
+    text-stroke: 1px var(--text-stroke-color, #fff);
+    text-shadow: none;
+  }
+}
+
+/* контейнер картинки в секции */
+.card__img {
+  position: relative;
+  block-size: clamp(375px, 100vw, 700px);
+  border-top: 2px solid var(--accent-color, #000);
+  border-bottom: 2px solid var(--accent-color, #000);
+}
+
+/* картинка */
+.img {
+  inline-size: 100%;
+  block-size: clamp(371px, 100vw - 4px, 696px);
+  object-fit: cover;
+  object-position: center;
+}
+
+/* фильтры для картинок */
+.negative {
+  filter: invert(1);
+}
+
+.hue-rotate {
+  filter: hue-rotate(90deg);
+}
+
+.contrast {
+  filter: contrast(3);
+}
+
+.grayscale {
+  filter: grayscale(0.8);
+}
+
+.sepia {
+  filter: sepia(0.6);
+}
+
+.blur {
+  filter: blur(15px);
+}
+
+.multiply-filter {
+  filter: sepia(1) contrast(2) brightness(200%);
+}
+
+/* текст секции */
+.card__text {
+  font-size: 18px;
+  font-weight: var(--font-weight-text, 400);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px;
+}
+
+/* контейнер для кнопок в секции */
+.card__button-container {
+  display: flex;
+  align-self: flex-end;
+  gap: 7px;
+}
+
+/* svg иконка сердца */
+.like-icon {
+  inline-size: 36px;
+  block-size: 34px;
+}
+
+/* контур сердца */
+.contour {
+  transition: fill 0.1s linear;
+}
+
+/* основное тело сердца */
+.main-body {
+  fill: transparent;
+  transition: fill 0.3s linear;
+}
+
+/* сердцевина */
+.core {
+  fill: transparent;
+  transition: fill 0.3s 0.03s linear;
+}
+
+/* искры сердца */
+.sparks {
+  opacity: 0;
+}
+
+/* основное тело сердца при наведении */
+.like-icon:hover .main-body {
+  fill: var(--contour-color);
+  transition: fill 0.3s 0.05s linear;
+}
+
+/* сердцевина при наведении */
+.like-icon:hover .core {
+  fill: var(--contour-color);
+  transition: fill 0.3s linear;
+}
+
+/* сердцевина при зажатии */
+.like-icon:active .core {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear;
+}
+
+/* основное тело сердца при зажатии */
+.like-icon:active .main-body {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s 0.05s linear;
+}
+
+/* контур сердца при клике */
+.like-icon.is-liked .contour {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s 0.06s linear;
+}
+
+/* основное тело сердца при клике */
+.like-icon.is-liked .main-body {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s 0.05s linear;
+}
+
+/* сердцевина при клике */
+.like-icon.is-liked .core {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear;
+}
+
+/* группа из контура, сердцвевины и основного тела при клике  */
+.like-icon.is-liked .heart {
+  transform-origin: center;
+  animation: scale-animation 0.3s 0.1s ease-in;
+}
+
+/* искры при клике */
+.like-icon.is-liked .sparks {
+    animation: sparks-animation 0.3s 0.3s ease-in;
+}
+
+/* кнопка оборачивающая сердце */
+.card__icon-button {
+  inline-size: 38px;
+  block-size: 38px;
+  border: none;
+  transition: none;
+}
+
+/* кнопка оборачивающая Like */
+.card__like-button {
+  inline-size: 130px;
+  block-size: 38px;
+}
+
+/* кнопка оборачивающая сердца в состоянии фокуса */
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  outline: none;
+  border: 2px solid var(--accent-color, #000);
+}
+
+/* кнопка оборачивающая Like в состоянии фокуса */
+.card__like-button:focus {
+  outline: none;
+}
+
+.card__like-button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 0 var(--accent-color, #000);
+}
+
+/* псевдоэлемент кнопки оборачивающей Like при наведении */
+.card__like-button:after {
+  content: '';
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  scale: 0;
+  transform-origin: top left;
+  transition: scale 0.5s ease-in-out;
+  background-color: var(--accent-color, #000);
+}
+
+.card__like-button:hover::after {
+  scale: 1;
+}
+
+/* подвал */
+.footer {
+  display: flex;
+  justify-content: center;
+  min-block-size: 134px;
+  padding-block-start: 50px;
+}
+
+/* иконка дискеты в кнопке футера */
+.floppy-icon {
+  inline-size: 28px;
+  block-size: 28px;
+  fill: var(--main-color, #fff);
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+/* кнопка футера */
+.footer__save-button {
+  gap: 9px;
+  inline-size: 306px;
+  block-size: 84px;
+}
+
+/* кнопка подвала в состаянии фокуса */
+.footer__save-button:focus {
+  outline: none;
+}
+
+.footer__save-button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 0 var(--accent-color, #000);
+}
+
+/* псевдоэлемент кнопки подвала при наведении */
+.footer__save-button::after {
+  content: '';
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  scale: 0;
+  transform-origin: top left;
+  transition: scale 0.5s ease-in-out;
+  background-color: var(--accent-color, #000);
+}
+
+.footer__save-button:hover::after {
+  scale: 1;
+}
+
+/* модальное окно диалога */
+.modal {
+  font-family: var(--font-family-accent, sans-serif);
+  font-size: 14px;
+  text-transform: uppercase;
+  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  inline-size: 341px;
+  block-size: 191px;
+  padding: 30px 40px;
+  border: 2px solid var(--accent-color, #000);
+}
+
+/* модальное окно в закрытом состоянии */
+.modal:not([open]) {
+  display: none;
+}
+
+/* задний фон при открытом модальном окне */
+.modal::backdrop {
+  opacity: 70%;
+  background: linear-gradient(180deg, #E7E7E7 0%, #1A1A1A 100%);
+}
+
+/* контейнер для иконки и текста в модальном окне */
+.modal__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* иконка дискеты в модальном окне */
+.modal__floppy {
+  block-size: 39px;
+  inline-size: 39px;
+}
+
+/* текст в модальном окне */
+.modal__text {
+  line-height: 150%;
+  inline-size: 198px;
+}
+
+/* форма закрытия модального окна */
+.modal__form {
+  display: flex;
+  block-size: 38px;
+}
+
+/* кнопка закрытия модального окна */
+.modal__close-button {
+  inline-size: 100%;
+}
+
+/* кнопка закрытия модального окна в состоянии фокуса */
+.modal__close-button:focus {
+  outline: none;
+}
+
+.modal__close-button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 0 var(--accent-color, #000);
+}
+
+/* псевдоэлемент кнопки закрытия модального окна при наведении */
+.modal__close-button::after {
+  content: '';
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  scale: 0;
+  transform-origin: top left;
+  transition: scale 0.5s ease-in-out;
+  background-color: var(--accent-color, #000);
+}
+
+.modal__close-button:hover::after {
+  scale: 1;
+}
+
+/* адаптив для экрана больше 700px */
+@media (width > 700px) {
+  .header {
+    min-block-size: 372px;
+  }
+  .footer {
+    min-block-size: 105px;
+  }
+  .button {
+    flex-direction: row;
+  }
+  .footer__save-button {
+    inline-size: 335px;
+    block-size: 55px;
+  }
+  .footer__svg {
+    inline-size: 21px;
+    block-size: 21px;
+  }
+  .dialog {
+    inline-size: 353px;
+  }
 }
