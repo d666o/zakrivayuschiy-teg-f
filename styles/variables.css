@@ -1,26 +1,16 @@
 :root {
-    /* шрифты */
-    --font-family-main: 'Inter-Variable';
-    --font-family-accent: 'PressStart2P-Regular';
-    /* вес вариативного шрифта */
-    --font-weight-text: 410;
-    --font-weight-title: 715;
-    /* градиент */
-    --gradient-left: repeating-linear-gradient(to right, #d3d3d3, transparent 2px);
-    --gradient-top: repeating-linear-gradient(to bottom, #d3d3d3, transparent 2px);
-    --gradient-main: linear-gradient(to bottom, #e7e7e7, #1a1a1a);
-    /* цвет обводки лейбла */
-    --text-stroke-color: #fff;
-    /* цвет шрифта */
-    --font-color: #000;
-    /* основной цвет */
-    --main-color: #fff;
-    /* акцентный цвет */
-    --accent-color: #000;
-    /* цвет контура сердца */
-    --contour-color: #000;
-    /* цвет заливки сердца */
-    --animation-fill-color: #ff0000;
-    /* цвет искр */
-    --spark-color: #ff0000;
+  --font-family-main: 'Inter-Variable';
+  --font-family-accent: 'PressStart2P-Regular';
+  --font-weight-text: 410;
+  --font-weight-title: 715;
+  --gradient-left: repeating-linear-gradient(to right,#d3d3d3 0 2px, transparent 2px 4px);
+  --gradient-top: repeating-linear-gradient(to bottom, #d3d3d3 0 2px, transparent 2px 4px);
+  --gradient-main: linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+  --text-stroke-color: #fff;
+  --font-color: #000;
+  --main-color: #fff;
+  --accent-color: #000;
+  --contour-color: #000;
+  --animation-fill-color: #ff0000;
+  --spark-color: #ff0000;
 }
